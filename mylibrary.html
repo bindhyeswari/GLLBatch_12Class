@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        span.disp {
+            display: inline-block;
+            border: 1px solid #eee;
+            font: 300 1em 'Helvetica Neue';
+            padding: 1em;
+        }
+    </style>
+    <script>
+
+        function Hamid(str){
+            return document.createElement(str);
+        }
+
+        HTMLElement.prototype.addClass = function(classname){
+            this.className += ' ' + classname;
+            return this;
+        };
+        HTMLElement.prototype.html = function(text){
+            this.innerHTML = text;
+            return this;
+        };
+
+
+        window.onload = function (){
+            var span = Hamid('span');
+
+            // chaining design pattern
+            console.log(span.html('Hamid').addClass('disp'));
+            //span.html('Hamid').addClass('disp');
+
+            document.body.appendChild(span);
+        };
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

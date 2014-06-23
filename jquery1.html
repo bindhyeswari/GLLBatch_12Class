@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <style>
+        .someclass {
+            background-color: red;
+            padding: 1em;
+            display: inline-block;
+        }
+        .bordergreen {
+            border: 2px solid green;
+        }
+
+    </style>
+    <script>
+
+        $(function (){
+            console.log('HEllo world again!');
+        });
+
+        $(function (){
+            console.log('Hello World from jQuery!');
+
+            $('div#div1').html('Hello!!!').addClass('bordergreen');
+
+            $('div > ul > li').html('Jyothika').addClass('someclass');
+
+            $('<div>').html('I am a new div element!').appendTo(document.body);
+
+            var div = document.getElementById('div1');
+            $(div).html('asdf');
+
+            $.getJSON('http://restcountries.eu/rest/v1/region/africa', function (d){
+                d.forEach(function (country){
+                    $('<li>').html(country.name).appendTo('#names');
+                });
+            })
+
+        });
+
+        function Slider(){
+
+        }
+
+
+
+
+
+    </script>
+</head>
+<body>
+    <div id="div1">
+
+    </div>
+    <div>
+        <ul id="names">
+            <li></li>
+        </ul>
+    </div>
+
+</body>
+</html>
