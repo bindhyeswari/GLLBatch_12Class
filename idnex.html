@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div.container {
+            margin: 0 auto;
+            padding: 1em;
+            border: 1px solid #eee;
+            width: 60%;
+            /*overflow: hidden;*/
+        }
+        div.container:after {
+            content: 'asdfasdf';
+            display: block;
+        }
+        div.container > div { /* 0 0 1 2 */
+            padding: 0.5em;
+            border: 1px solid #555;
+            width: 25%;
+            float: left;
+        }
+        div.dummy_float { /* 0 0 1 1 */
+            padding: 1em;
+        }
+    </style>
+    <script>
+        function Car(){
+            this.wheels = 4;
+        }
+        var car1 = {};
+        // var car = new Car();
+        var car = Object.create(Car.prototype);
+        var car2 = new Car();
+
+        console.log(car instanceof Car);
+        console.log(car2 instanceof Car);
+
+        console.log(car);
+        console.log(car2);
+
+        var obj = {
+            id: 32,
+            name: 'Jacob',
+            security: 'ssl'
+        };
+
+        function createURL(obj){
+            // console log url encoded object
+            // http://hamid.com/search?name=Jacob&id=32&security=ssl
+
+            var url = 'http://hamid.com/search?';
+            var components = [];
+            for (var propertyname in obj) {
+                 if (obj.hasOwnProperty(propertyname))
+                    components.push(encodeURIComponent(propertyname) + '=' + encodeURIComponent(obj[propertyname]));
+            }
+            console.log(url + components.join('&'));
+
+        }
+
+        function createURL2(obj){
+            // console log url encoded object
+            // http://hamid.com/search?name=Jacob&id=32&security=ssl
+
+            var url = 'http://hamid.com/search?';
+            var components = [];
+            var keys = Object.keys(obj);
+            console.log(keys);
+            for (var i = 0; i < keys.length; i++) {
+                components.push(keys[i] + '=' + obj[keys[i]]);
+            }
+            console.log(components);
+            console.log(url + components.join('&'));
+        }
+
+
+        createURL2(obj);
+
+        var data = encodeURIComponent('Jacob M');
+        console.log(decodeURIComponent(data));
+
+
+    </script>
+</head>
+<body>
+
+    <!--Technique 1-->
+    <div class="container">
+        <div>Child 1</div>
+        <div>Child 2</div>
+        <div>Child 3</div>
+        <div>asdf</div>
+    </div>
+
+</body>
+</html>

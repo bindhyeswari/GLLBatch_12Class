@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        function Car(name, num_tires){
+            this.name = name;
+            this.tires = num_tires;
+        }
+
+        var car = new Car('Civic', 4);
+        console.log(car);
+
+        // Question 3 - indexOf, contains, regular expression
+        console.log(' is in class today'.indexOf('Foram'));
+
+        var phrase = 'I want to capitalize everything in this sentence.';
+        console.log(phrase.replace(/\b[a-z]/g, function(param){
+            return param.toUpperCase();
+        }));
+
+
+        String.prototype.capitalize = function (){
+            return this.replace(/\b[a-z]/g, function(param) {
+                return param.toUpperCase();
+            });
+        };
+
+        console.log("I am a string".capitalize());
+
+
+
+        Object.create_polyfill = function (parent){
+            // Take the parent as an input
+            // Return a child object pointing to the parent
+            // prototype attribute of the child has to point to parent
+
+            function FN() {
+
+            }
+
+            FN.prototype = parent;
+            var child = new FN();
+            return child;
+
+        };
+
+        var obj = { id: 32,
+            _value: 0,
+            get val(){
+                return this._value;
+            },
+            set val(_value){
+                if (_value >= 0)
+                    this._value = _value
+            }
+
+        };
+        // obj._value = -100;
+        obj.val = -200;
+        console.log(obj.val);
+
+
+        var obj2 = Object.create_polyfill(obj);
+
+        var x = {
+            prop: 34,
+            valueOf: function (){
+                return this.prop;
+            },
+            toString: function (){
+                return 'coming from string ... ';
+            }
+        };
+        var y = {
+            prop: 22,
+            valueOf: function (){
+                return this.prop;
+            }
+        };
+        console.log(x + y);
+
+        function Person(){
+            this.id = 32;
+            this.name = 'jhoh'
+        }
+
+        // var p = new fn()
+        // 1. A new object is created
+        // 2. The new object is passed to the fn function as this
+        // 3. The prototype attribute of the object is set to fn.prototype
+
+        console.log(abc.x);
+        var abc;
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

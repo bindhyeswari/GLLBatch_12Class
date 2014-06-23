@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            font: 300 1em "Consolas", "Menlo", "Courier", monospace;
+
+        }
+    </style>
+    <script>
+
+        getDataByRegion();
+
+        HTMLUListElement.prototype.add = function (inp){
+            if (inp instanceof Array) {
+                // run code recursively for array
+                for (var i = 0; i < inp.length; i++) {
+                    this.add(inp[i]);
+                }
+            } else {
+                var li = document.createElement('li');
+                li.innerHTML = inp;
+                this.appendChild(li);
+            }
+
+        };
+
+        function getDataByRegion(){
+
+            // create a new XMLHttpRequest object
+            // open the xhr object
+            // create an event handler for xhr.onreadystatechange
+            // send the request
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://restcountries.eu/rest/v1/region/africa'); // two inputs
+            xhr.onreadystatechange = function (){
+                // check for status and readyState
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    //console.log(xhr.responseText);
+                    var obj = JSON.parse(xhr.responseText);
+                    //console.log(obj);
+
+                    // write code to print out names of all countries as an array
+                    // Array.prototype.map
+
+                    // get names of all countries as an array
+                    var names = obj.map(function (country) {
+                        return country.name;
+                    });
+
+                    var capitals = obj.map(function (country) {
+                        return country.capital;
+                    });
+
+                    console.log(names);
+
+                    var ul = document.body.firstElementChild;
+                    ul.add(names);
+                    var ul2 = document.createElement('ul');
+                    ul2.add(capitals);
+                    document.body.appendChild(ul2);
+
+
+
+
+
+                }
+            };
+            xhr.send();
+
+        }
+
+    </script>
+</head>
+<body>
+<ul>
+
+</ul>
+<ul>
+
+</ul>
+
+</body>
+</html>

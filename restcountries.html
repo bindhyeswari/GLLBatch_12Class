@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            font: 300 1em "Consolas", "Menlo", "Courier", monospace;
+
+        }
+    </style>
+    <script>
+
+        getDataByRegion();
+
+        HTMLUListElement.prototype.add = function (str){
+            var li = document.createElement('li');
+            li.innerHTML = str;
+            this.appendChild(li);
+        };
+
+        function getDataByRegion(){
+
+            // create a new XMLHttpRequest object
+            // open the xhr object
+            // create an event handler for xhr.onreadystatechange
+            // send the request
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://restcountries.eu/rest/v1/region/africa'); // two inputs
+            xhr.onreadystatechange = function (){
+                // check for status and readyState
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    //console.log(xhr.responseText);
+                    var obj = JSON.parse(xhr.responseText);
+                    //console.log(obj);
+
+                    // write code to print out names of all countries as an array
+                    // Array.prototype.map
+
+                    // get names of all countries as an array
+                    var names = obj.map(function (country) {
+                        return country.name;
+                    });
+
+                    var capitals = obj.map(function (country) {
+                        return country.capital;
+                    });
+
+                    console.log(names);
+
+                    // basic
+                    // get access to the ul element --> var ul = document.body.firstElementChild;
+                    // var capitals_ul = document.body.children[1];
+                    // loop over all names
+                    // ul.add(names[i]);
+
+                    var ul = document.body.firstElementChild;
+                    names.forEach(function (name){
+                        ul.add(name);
+                    });
+
+
+
+
+
+
+                }
+            };
+            xhr.send();
+
+        }
+
+    </script>
+</head>
+<body>
+    <ul>
+
+    </ul>
+    <ul>
+
+    </ul>
+
+</body>
+</html>
